@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="dbprojectsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Jobs">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="projectId" Type="int" />
+          <Property Name="jobType" Type="nvarchar" MaxLength="50" />
+          <Property Name="agreedPrice" Type="nvarchar" MaxLength="50" />
+          <Property Name="payments" Type="varchar" MaxLength="50" />
+          <Property Name="notes" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Projects">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="projectName" Type="nvarchar" MaxLength="50" />
+          <Property Name="cost" Type="varchar" MaxLength="50" />
+          <Property Name="payments" Type="varchar" MaxLength="50" />
+          <Property Name="notes" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Jobs_Projects">
+          <End Role="Projects" Type="Self.Projects" Multiplicity="0..1" />
+          <End Role="Jobs" Type="Self.Jobs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projects">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Jobs">
+              <PropertyRef Name="projectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dbprojectsModelStoreContainer">
+          <EntitySet Name="Jobs" EntityType="Self.Jobs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Projects" EntityType="Self.Projects" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Jobs_Projects" Association="Self.FK_Jobs_Projects">
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="Jobs" EntitySet="Jobs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dbprojectsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Job">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="projectId" Type="Int32" />
+          <Property Name="jobType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="agreedPrice" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="payments" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="notes" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Project" Relationship="Self.FK_Jobs_Projects" FromRole="Jobs" ToRole="Projects" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="projectName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cost" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="payments" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="notes" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Jobs" Relationship="Self.FK_Jobs_Projects" FromRole="Projects" ToRole="Jobs" />
+        </EntityType>
+        <Association Name="FK_Jobs_Projects">
+          <End Role="Projects" Type="Self.Project" Multiplicity="0..1" />
+          <End Role="Jobs" Type="Self.Job" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projects">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Jobs">
+              <PropertyRef Name="projectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dbprojectsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Jobs" EntityType="Self.Job" />
+          <EntitySet Name="Projects" EntityType="Self.Project" />
+          <AssociationSet Name="FK_Jobs_Projects" Association="Self.FK_Jobs_Projects">
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="Jobs" EntitySet="Jobs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="dbprojectsModelStoreContainer" CdmEntityContainer="dbprojectsEntities">
+          <EntitySetMapping Name="Jobs">
+            <EntityTypeMapping TypeName="dbprojectsModel.Job">
+              <MappingFragment StoreEntitySet="Jobs">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="projectId" ColumnName="projectId" />
+                <ScalarProperty Name="jobType" ColumnName="jobType" />
+                <ScalarProperty Name="agreedPrice" ColumnName="agreedPrice" />
+                <ScalarProperty Name="payments" ColumnName="payments" />
+                <ScalarProperty Name="notes" ColumnName="notes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Projects">
+            <EntityTypeMapping TypeName="dbprojectsModel.Project">
+              <MappingFragment StoreEntitySet="Projects">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="projectName" ColumnName="projectName" />
+                <ScalarProperty Name="cost" ColumnName="cost" />
+                <ScalarProperty Name="payments" ColumnName="payments" />
+                <ScalarProperty Name="notes" ColumnName="notes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
