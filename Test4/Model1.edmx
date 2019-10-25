@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="dbprojectsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="dbprojectsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Jobs">
           <Key>
             <PropertyRef Name="id" />
@@ -15,18 +15,16 @@
           <Property Name="agreedPrice" Type="nvarchar" MaxLength="50" />
           <Property Name="payments" Type="varchar" MaxLength="50" />
           <Property Name="notes" Type="varchar" MaxLength="50" />
-          <Property Name="isPayed" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Others">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id" Type="int" Nullable="false" />
           <Property Name="projectId" Type="int" />
           <Property Name="itemName" Type="nvarchar" MaxLength="50" />
           <Property Name="price" Type="nvarchar" MaxLength="50" />
           <Property Name="notes" Type="varchar" MaxLength="50" />
-          <Property Name="isPayed" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Projects">
           <Key>
@@ -36,18 +34,10 @@
           <Property Name="projectName" Type="nvarchar" MaxLength="50" />
           <Property Name="cost" Type="varchar" MaxLength="50" />
           <Property Name="payments" Type="varchar" MaxLength="50" />
-          <Property Name="1stPayment" Type="varchar" MaxLength="50" />
-          <Property Name="2ndPayment" Type="varchar" MaxLength="50" />
-          <Property Name="3rdPayment" Type="varchar" MaxLength="50" />
-          <Property Name="debt" Type="varchar" MaxLength="50" />
-          <Property Name="deadline" Type="date" />
           <Property Name="notes" Type="varchar" MaxLength="50" />
-          <Property Name="isPayed" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK_Jobs_Projects">
-          <End Role="Projects" Type="Self.Projects" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Projects" Type="Self.Projects" Multiplicity="0..1" />
           <End Role="Jobs" Type="Self.Jobs" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Projects">
@@ -59,9 +49,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Others_Projects">
-          <End Role="Projects" Type="Self.Projects" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Projects" Type="Self.Projects" Multiplicity="0..1" />
           <End Role="Others" Type="Self.Others" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Projects">
@@ -85,7 +73,8 @@
             <End Role="Others" EntitySet="Others" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="dbprojectsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -100,7 +89,17 @@
           <Property Name="payments" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="notes" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Project" Relationship="Self.FK_Jobs_Projects" FromRole="Jobs" ToRole="Projects" />
-          <Property Name="isPayed" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Others">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="projectId" Type="Int32" />
+          <Property Name="itemName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="price" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="notes" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Project" Relationship="Self.FK_Others_Projects" FromRole="Others" ToRole="Projects" />
         </EntityType>
         <EntityType Name="Project">
           <Key>
@@ -112,13 +111,7 @@
           <Property Name="payments" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="notes" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Jobs" Relationship="Self.FK_Jobs_Projects" FromRole="Projects" ToRole="Jobs" />
-          <NavigationProperty Name="Others" Relationship="dbprojectsModel.FK_Others_Projects" FromRole="Project" ToRole="Others" />
-          <Property Name="isPayed" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="deadline" Type="DateTime" />
-          <Property Name="C1stPayment" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="C2ndPayment" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="C3rdPayment" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="debt" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Others" Relationship="Self.FK_Others_Projects" FromRole="Projects" ToRole="Others" />
         </EntityType>
         <Association Name="FK_Jobs_Projects">
           <End Role="Projects" Type="Self.Project" Multiplicity="0..1" />
@@ -132,36 +125,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="dbprojectsEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Jobs" EntityType="Self.Job" />
-          <EntitySet Name="Projects" EntityType="Self.Project" />
-          <AssociationSet Name="FK_Jobs_Projects" Association="Self.FK_Jobs_Projects">
-            <End Role="Projects" EntitySet="Projects" />
-            <End Role="Jobs" EntitySet="Jobs" />
-          </AssociationSet>
-          <EntitySet Name="Others" EntityType="dbprojectsModel.Others" />
-          <AssociationSet Name="FK_Others_Projects" Association="dbprojectsModel.FK_Others_Projects">
-            <End Role="Project" EntitySet="Projects" />
-            <End Role="Others" EntitySet="Others" />
-          </AssociationSet>
-        </EntityContainer>
-        <EntityType Name="Others">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="projectId" Type="Int32" />
-          <Property Name="itemName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="price" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="notes" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Project" Relationship="dbprojectsModel.FK_Others_Projects" FromRole="Others" ToRole="Project" />
-          <Property Name="isPayed" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
         <Association Name="FK_Others_Projects">
-          <End Type="dbprojectsModel.Project" Role="Project" Multiplicity="0..1" />
-          <End Type="dbprojectsModel.Others" Role="Others" Multiplicity="*" />
+          <End Role="Projects" Type="Self.Project" Multiplicity="0..1" />
+          <End Role="Others" Type="Self.Others" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Project">
+            <Principal Role="Projects">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Others">
@@ -169,16 +137,28 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityContainer Name="dbprojectsEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Jobs" EntityType="Self.Job" />
+          <EntitySet Name="Others" EntityType="Self.Others" />
+          <EntitySet Name="Projects" EntityType="Self.Project" />
+          <AssociationSet Name="FK_Jobs_Projects" Association="Self.FK_Jobs_Projects">
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="Jobs" EntitySet="Jobs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Others_Projects" Association="Self.FK_Others_Projects">
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="Others" EntitySet="Others" />
+          </AssociationSet>
+        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="dbprojectsModelStoreContainer" CdmEntityContainer="dbprojectsEntities">
+        <EntityContainerMapping StorageEntityContainer="dbprojectsModelStoreContainer" CdmEntityContainer="dbprojectsEntities1">
           <EntitySetMapping Name="Jobs">
             <EntityTypeMapping TypeName="dbprojectsModel.Job">
               <MappingFragment StoreEntitySet="Jobs">
-                <ScalarProperty Name="isPayed" ColumnName="isPayed" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="projectId" ColumnName="projectId" />
                 <ScalarProperty Name="jobType" ColumnName="jobType" />
@@ -188,32 +168,25 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Others">
+            <EntityTypeMapping TypeName="dbprojectsModel.Others">
+              <MappingFragment StoreEntitySet="Others">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="projectId" ColumnName="projectId" />
+                <ScalarProperty Name="itemName" ColumnName="itemName" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="notes" ColumnName="notes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Projects">
             <EntityTypeMapping TypeName="dbprojectsModel.Project">
               <MappingFragment StoreEntitySet="Projects">
-                <ScalarProperty Name="debt" ColumnName="debt" />
-                <ScalarProperty Name="C3rdPayment" ColumnName="3rdPayment" />
-                <ScalarProperty Name="C2ndPayment" ColumnName="2ndPayment" />
-                <ScalarProperty Name="C1stPayment" ColumnName="1stPayment" />
-                <ScalarProperty Name="deadline" ColumnName="deadline" />
-                <ScalarProperty Name="isPayed" ColumnName="isPayed" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="projectName" ColumnName="projectName" />
                 <ScalarProperty Name="cost" ColumnName="cost" />
                 <ScalarProperty Name="payments" ColumnName="payments" />
                 <ScalarProperty Name="notes" ColumnName="notes" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Others">
-            <EntityTypeMapping TypeName="dbprojectsModel.Others">
-              <MappingFragment StoreEntitySet="Others">
-                <ScalarProperty Name="isPayed" ColumnName="isPayed" />
-                <ScalarProperty Name="notes" ColumnName="notes" />
-                <ScalarProperty Name="price" ColumnName="price" />
-                <ScalarProperty Name="itemName" ColumnName="itemName" />
-                <ScalarProperty Name="projectId" ColumnName="projectId" />
-                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

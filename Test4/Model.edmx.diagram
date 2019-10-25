@@ -5,9 +5,11 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="c8aaae7baa1b47a8a51678c6bb181f6a" Name="Diagram1">
-        <EntityTypeShape EntityType="dbprojectsModel.Job" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbprojectsModel.Job" Width="1.5" PointX="3" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="dbprojectsModel.Project" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
         <AssociationConnector Association="dbprojectsModel.FK_Jobs_Projects" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="dbprojectsModel.Others" Width="1.5" PointX="3" PointY="3.125" />
+        <AssociationConnector Association="dbprojectsModel.FK_Others_Projects" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

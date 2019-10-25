@@ -8,6 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.Drawing;
+
 namespace Test4.Properties
 {
 
@@ -33,6 +35,8 @@ namespace Test4.Properties
         internal Resources()
         {
         }
+
+        public static Image Error { get; internal set; }
 
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.

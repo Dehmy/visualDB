@@ -18,6 +18,7 @@ namespace Test4
         public Project()
         {
             this.Jobs = new HashSet<Job>();
+            this.Others = new HashSet<Others>();
         }
     
         public int id { get; set; }
@@ -25,8 +26,16 @@ namespace Test4
         public string cost { get; set; }
         public string payments { get; set; }
         public string notes { get; set; }
+        public string isPayed { get; set; }
+        public Nullable<System.DateTime> deadline { get; set; }
+        public string C1stPayment { get; set; }
+        public string C2ndPayment { get; set; }
+        public string C3rdPayment { get; set; }
+        public string debt { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Job> Jobs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Others> Others { get; set; }
     }
 }

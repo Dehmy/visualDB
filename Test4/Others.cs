@@ -12,13 +12,12 @@ namespace Test4
     using System;
     using System.Collections.Generic;
     
-    public partial class Job
+    public partial class Others
     {
         public int id { get; set; }
         public Nullable<int> projectId { get; set; }
-        public string jobType { get; set; }
-        public string agreedPrice { get; set; }
-        public string payments { get; set; }
+        public string itemName { get; set; }
+        public string price { get; set; }
         public string notes { get; set; }
         public string isPayed { get; set; }
     

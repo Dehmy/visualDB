@@ -13,10 +13,10 @@ namespace Test4
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class dbprojectsEntities : DbContext
+    public partial class dbprojectsEntities1 : DbContext
     {
-        public dbprojectsEntities()
-            : base("name=dbprojectsEntities")
+        public dbprojectsEntities1()
+            : base("name=dbprojectsEntities1")
         {
         }
     
@@ -26,7 +26,7 @@ namespace Test4
         }
     
         public virtual DbSet<Job> Jobs { get; set; }
-        public virtual DbSet<Project> Projects { get; set; }
         public virtual DbSet<Others> Others { get; set; }
+        public virtual DbSet<Project> Projects { get; set; }
     }
 }
