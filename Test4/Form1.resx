@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <metadata name="projectBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, -1553</value>
+    <value>17, -1587</value>
   </metadata>
   <metadata name="DeleteOther.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -130,7 +130,7 @@
     <value>True</value>
   </metadata>
   <metadata name="jobBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>220, -1547</value>
+    <value>220, -1581</value>
   </metadata>
   <metadata name="C1stPayment.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -147,8 +147,22 @@
   <metadata name="DeleteRecord.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="refresh.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABsAAAAbCAYAAACN1PRVAAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1
+        MAAA6mAAADqYAAAXcJy6UTwAAAAJcEhZcwAACxMAAAsTAQCanBgAAAFoSURBVEhL7dVNK0RRHMfxWSgs
+        JE97WWBpISkpeXod3oCRkuQpYiXJa+ItyIKFlLCw8BQl4vvNPTVuM3PPZWym+dWn65455/zdc+6cKTRS
+        12nFDBawiUXMwvZy6U2uudKFQzziswzbD9CBkG1sff8Zn3HcIkz8jhMcJVfvw2fXGMVOcp+rmIVe4cB7
+        LKETpfGpV/EM+70l11zFnCQ80Rmy1n8Q6WWOLuYeOcAnitnosHS5i/l2hf/SpctKuUKKKubrbWc3P71H
+        6VQqpKhifo/s7NtWLe7rXBVDyMwGLObr/e+JfbKaZBoWi9mzdNowkah0jP2InR5gwWUbcsQz03F3aLIh
+        Jp51DrJonw0RGUA4SXZtiI3LdwMHniOrYD8uYP9LuJy5MoYXOIFf8hV0ozQ9WMMT7Od1GL+KBT3NnUgf
+        OMVxcvU+fHaFEfwp/k7tw3MyTFzK9j20o2ZpwSTmsY4iptCMRuoyhcIX9U565ipOlesAAAAASUVORK5C
+        YII=
+</value>
+  </data>
   <metadata name="othersBindingSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>595, -1547</value>
+    <value>595, -1581</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>25</value>

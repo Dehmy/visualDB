@@ -39,6 +39,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.textProjectName = new System.Windows.Forms.TextBox();
             this.projectBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.textCost = new System.Windows.Forms.TextBox();
@@ -99,7 +100,9 @@
             this.fromSearchDateTime1 = new MetroFramework.Controls.MetroDateTime();
             this.metroLabel12 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel13 = new MetroFramework.Controls.MetroLabel();
+            this.refresh = new System.Windows.Forms.Button();
             this.othersBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.metroLabel14 = new MetroFramework.Controls.MetroLabel();
             ((System.ComponentModel.ISupportInitialize)(this.projectBindingSource)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.OthersMetroGrid1)).BeginInit();
@@ -672,7 +675,7 @@
             this.projectsMetroGrid1.EnableHeadersVisualStyles = false;
             this.projectsMetroGrid1.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.projectsMetroGrid1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.projectsMetroGrid1.Location = new System.Drawing.Point(41, 478);
+            this.projectsMetroGrid1.Location = new System.Drawing.Point(67, 469);
             this.projectsMetroGrid1.Name = "projectsMetroGrid1";
             this.projectsMetroGrid1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -683,11 +686,12 @@
             dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
             dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.projectsMetroGrid1.RowHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            this.projectsMetroGrid1.RowHeadersVisible = false;
             this.projectsMetroGrid1.RowHeadersWidth = 51;
             this.projectsMetroGrid1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.projectsMetroGrid1.RowTemplate.Height = 30;
             this.projectsMetroGrid1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.projectsMetroGrid1.Size = new System.Drawing.Size(1324, 233);
+            this.projectsMetroGrid1.Size = new System.Drawing.Size(1286, 233);
             this.projectsMetroGrid1.TabIndex = 21;
             this.projectsMetroGrid1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ProjectsMetroGrid1_CellClick_1);
             this.projectsMetroGrid1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ProjectsMetroGrid1_CellContentClick);
@@ -781,6 +785,7 @@
             this.debt.HeaderText = "Jobs/Others Total";
             this.debt.MinimumWidth = 6;
             this.debt.Name = "debt";
+            this.debt.ReadOnly = true;
             this.debt.Width = 125;
             // 
             // notesDataGridViewTextBoxColumn3
@@ -867,15 +872,39 @@
             this.metroLabel13.TabIndex = 37;
             this.metroLabel13.Text = "To:";
             // 
+            // refresh
+            // 
+            this.refresh.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("refresh.BackgroundImage")));
+            this.refresh.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.refresh.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.refresh.Location = new System.Drawing.Point(1349, 469);
+            this.refresh.Name = "refresh";
+            this.refresh.Size = new System.Drawing.Size(42, 71);
+            this.refresh.TabIndex = 38;
+            this.refresh.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.refresh.UseVisualStyleBackColor = true;
+            this.refresh.Click += new System.EventHandler(this.Refresh_Click);
+            // 
             // othersBindingSource1
             // 
             this.othersBindingSource1.DataSource = typeof(Test4.Others);
+            // 
+            // metroLabel14
+            // 
+            this.metroLabel14.Location = new System.Drawing.Point(12, 775);
+            this.metroLabel14.Name = "metroLabel14";
+            this.metroLabel14.Size = new System.Drawing.Size(134, 23);
+            this.metroLabel14.TabIndex = 40;
+            this.metroLabel14.Text = "Check For Updates";
+            this.metroLabel14.Click += new System.EventHandler(this.MetroLabel14_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1414, 803);
+            this.Controls.Add(this.metroLabel14);
+            this.Controls.Add(this.refresh);
             this.Controls.Add(this.metroLabel13);
             this.Controls.Add(this.metroLabel12);
             this.Controls.Add(this.fromSearchDateTime1);
@@ -890,7 +919,7 @@
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
             this.Name = "Form1";
-            this.Text = "l";
+            this.Text = "Projects Database";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.projectBindingSource)).EndInit();
             this.panel1.ResumeLayout(false);
@@ -946,17 +975,6 @@
         private MetroFramework.Controls.MetroDateTime fromSearchDateTime1;
         private MetroFramework.Controls.MetroLabel metroLabel12;
         private MetroFramework.Controls.MetroLabel metroLabel13;
-        private System.Windows.Forms.DataGridViewTextBoxColumn projectNameDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn costDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewComboBoxColumn paymentsDataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn C1stPayment;
-        private System.Windows.Forms.DataGridViewTextBoxColumn C2ndPayment;
-        private System.Windows.Forms.DataGridViewTextBoxColumn C3rdPayment;
-        private System.Windows.Forms.DataGridViewTextBoxColumn deadlineDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn debt;
-        private System.Windows.Forms.DataGridViewTextBoxColumn notesDataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn isPayedDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewButtonColumn DeleteRecord;
         private System.Windows.Forms.DataGridViewTextBoxColumn itemNameDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn notesDataGridViewTextBoxColumn5;
@@ -968,6 +986,19 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn notesDataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewCheckBoxColumn isPayedDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewButtonColumn DeleteJob;
+        private System.Windows.Forms.Button refresh;
+        private System.Windows.Forms.DataGridViewTextBoxColumn projectNameDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn costDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewComboBoxColumn paymentsDataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn C1stPayment;
+        private System.Windows.Forms.DataGridViewTextBoxColumn C2ndPayment;
+        private System.Windows.Forms.DataGridViewTextBoxColumn C3rdPayment;
+        private System.Windows.Forms.DataGridViewTextBoxColumn deadlineDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn debt;
+        private System.Windows.Forms.DataGridViewTextBoxColumn notesDataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn isPayedDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewButtonColumn DeleteRecord;
+        private MetroFramework.Controls.MetroLabel metroLabel14;
     }
 }
 

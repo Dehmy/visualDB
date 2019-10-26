@@ -4,12 +4,14 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.Entity.Infrastructure;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.DataGridView;
+using Squirrel;
 
 namespace Test4
 {
@@ -19,7 +21,6 @@ namespace Test4
         DateTimePicker dtp = new DateTimePicker();
       //  DateTimePicker dto = new DateTimePicker();
         Rectangle _Rectangle;
-        string toti;
         double totaltest;
         double totaltest2;
         public Form1()
@@ -39,15 +40,37 @@ namespace Test4
             //
             dtp.TextChanged += new EventHandler(dtp_TextChange);
             //  dto.TextChanged += new EventHandler(dto_TextChange);
-            CheckForUpdates();
+            AddVersionNumber();
 
         }
+
+        private void AddVersionNumber()
+        {
+            System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
+            FileVersionInfo versionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
+
+            this.Text += $"v.{versionInfo.FileVersion}";
+        }
+
+
         private async Task CheckForUpdates()
         {
-            using (var manager = new UpdateManager(@"C:/Temp/Releases"))
+            try
             {
-                await manager.UpdateApp();
+               using (var manager = UpdateManager.GitHubUpdateManager("https://github.com/Dehmy/visualDB"))
+               {
+                await manager.Result.UpdateApp();
+               }
             }
+            catch (Exception ex)
+            {
+                string message = ex.Message + Environment.NewLine;
+                if (ex.InnerException != null)
+                    message += ex.InnerException.Message;
+                MessageBox.Show(message);
+            }
+
+
 
 
         }
@@ -656,6 +679,19 @@ namespace Test4
         private void ProjectsMetroGrid1_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
 
+        }
+
+        private void Refresh_Click(object sender, EventArgs e)
+        {
+            projectBindingSource.DataSource = db.Projects.Include("Jobs").ToList();
+            ShowJob();
+        }
+
+
+
+        private void MetroLabel14_Click(object sender, EventArgs e)
+        {
+            CheckForUpdates();
         }
 
 
