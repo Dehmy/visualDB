@@ -18,6 +18,8 @@ namespace Test4
         public dbprojectsEntities()
             : base("name=dbprojectsEntities")
         {
+            //testing
+            Database.SetInitializer<dbprojectsEntities>(new CreateDatabaseIfNotExists<dbprojectsEntities>());
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
